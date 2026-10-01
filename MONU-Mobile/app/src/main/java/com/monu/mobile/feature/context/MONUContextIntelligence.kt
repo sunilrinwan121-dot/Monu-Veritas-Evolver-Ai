@@ -76,26 +76,7 @@ class MONUContextIntelligence {
         }
     }
 
-    fun demoContext(): List<MONUContextItem> {
-        return listOf(
-            MONUContextItem(
-                id = "project_context",
-                type = MONUContextType.PROJECT,
-                title = "Current Project Context",
-                summary = "Verified project information can be assembled here.",
-                status = MONUContextStatus.UNKNOWN,
-                priority = 10
-            ),
-            MONUContextItem(
-                id = "command_context",
-                type = MONUContextType.COMMAND,
-                title = "Recent Command Context",
-                summary = "Real command history may later provide contextual continuity.",
-                status = MONUContextStatus.UNKNOWN,
-                priority = 8
-            )
-        )
-    }
+    fun demoContext(): List<MONUContextItem> = emptyList()
 
     fun createSnapshot(
         title: String,
