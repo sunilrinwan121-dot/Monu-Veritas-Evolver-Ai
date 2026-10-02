@@ -36,6 +36,25 @@ android {
         )
     }
 
+    signingConfigs {
+        create("release") {
+            val storeFilePath = System.getenv("MONU_KEYSTORE_PATH")
+            val storePasswordValue = System.getenv("MONU_KEYSTORE_PASSWORD")
+            val keyAliasValue = System.getenv("MONU_KEY_ALIAS")
+            val keyPasswordValue = System.getenv("MONU_KEY_PASSWORD")
+
+            if (!storeFilePath.isNullOrBlank() &&
+                !storePasswordValue.isNullOrBlank() &&
+                !keyAliasValue.isNullOrBlank() &&
+                !keyPasswordValue.isNullOrBlank()) {
+                storeFile = file(storeFilePath)
+                storePassword = storePasswordValue
+                keyAlias = keyAliasValue
+                keyPassword = keyPasswordValue
+            }
+        }
+    }
+
     namespace = "com.monu.mobile"
     compileSdk = 35
 
@@ -43,8 +62,8 @@ android {
         applicationId = "com.monu.mobile"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
