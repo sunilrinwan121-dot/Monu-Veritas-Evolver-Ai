@@ -41,6 +41,8 @@ jobs:
           chmod +x gradlew
 
       - name: Build Debug APK
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: ./gradlew :app:assembleDebug --no-daemon --stacktrace
 
       - name: Verify APK
