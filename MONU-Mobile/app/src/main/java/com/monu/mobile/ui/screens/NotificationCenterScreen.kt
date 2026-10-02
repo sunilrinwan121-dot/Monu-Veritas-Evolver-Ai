@@ -19,6 +19,7 @@ import com.monu.mobile.domain.model.MONUNotificationSource
 
 @Composable
 fun NotificationCenterScreen() {
+    val notifications = listOf(
 
         MONUNotification(
             id = "heartbeat",
@@ -55,7 +56,7 @@ fun NotificationCenterScreen() {
             contentPadding = PaddingValues(top = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            items(emptyList()) { notification ->
+            items(notifications) { notification ->
                 NotificationCard(notification)
             }
         }
