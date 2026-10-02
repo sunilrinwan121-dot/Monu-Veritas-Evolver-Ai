@@ -1,6 +1,7 @@
 package com.monu.mobile.feature.memory
 
 import android.content.Context
+import com.monu.mobile.data.security.MONUSecureMemoryStore
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.UUID
@@ -15,28 +16,37 @@ data class MONUMemory(
 
 class MONUMemoryEngine(context: Context) {
 
-    private val appContext = context.applicationContext
+    companion object {
+        private const val MAX_MEMORIES = 200
+        private const val MAX_MEMORY_CHARS = 2000
+        private const val MAX_TOTAL_CHARS = 120000
+        private const val DEFAULT_RECALL_LIMIT = 8
+        private const val DEFAULT_RECENT_LIMIT = 20
+    }
 
-    private val preferences =
-        appContext.getSharedPreferences(
-            "monu_persistent_memory",
-            Context.MODE_PRIVATE
+    private val secureStore =
+        MONUSecureMemoryStore(
+            context.applicationContext
         )
-
-    private val memoryKey = "memories_v1"
 
     @Synchronized
     fun remember(content: String): MONUMemory? {
 
-        val cleanContent = content
-            .trim()
-            .replace(Regex("\\s+"), " ")
+        val cleanContent =
+            content
+                .trim()
+                .replace(
+                    Regex("\\s+"),
+                    " "
+                )
+                .take(MAX_MEMORY_CHARS)
 
         if (cleanContent.isBlank()) {
             return null
         }
 
-        val memories = loadAll().toMutableList()
+        val memories =
+            loadAll().toMutableList()
 
         val existingIndex =
             memories.indexOfFirst {
@@ -46,19 +56,23 @@ class MONUMemoryEngine(context: Context) {
                 )
             }
 
-        val now = System.currentTimeMillis()
+        val now =
+            System.currentTimeMillis()
 
         if (existingIndex >= 0) {
 
-            val existing = memories[existingIndex]
+            val existing =
+                memories[existingIndex]
 
             val updated =
                 existing.copy(
                     updatedAt = now,
-                    accessCount = existing.accessCount + 1
+                    accessCount =
+                        existing.accessCount + 1
                 )
 
-            memories[existingIndex] = updated
+            memories[existingIndex] =
+                updated
 
             saveAll(memories)
 
@@ -67,7 +81,9 @@ class MONUMemoryEngine(context: Context) {
 
         val memory =
             MONUMemory(
-                id = UUID.randomUUID().toString(),
+                id =
+                    UUID.randomUUID()
+                        .toString(),
                 content = cleanContent,
                 createdAt = now,
                 updatedAt = now,
@@ -76,27 +92,43 @@ class MONUMemoryEngine(context: Context) {
 
         memories.add(memory)
 
-        saveAll(memories)
+        val bounded =
+            enforceLimits(memories)
 
-        return memory
+        saveAll(bounded)
+
+        return if (
+            bounded.any {
+                it.id == memory.id
+            }
+        ) {
+            memory
+        } else {
+            null
+        }
     }
 
     @Synchronized
-    fun recall(query: String, limit: Int = 8): List<MONUMemory> {
+    fun recall(
+        query: String,
+        limit: Int = DEFAULT_RECALL_LIMIT
+    ): List<MONUMemory> {
+
+        val safeLimit =
+            limit.coerceIn(1, DEFAULT_RECALL_LIMIT)
 
         val cleanQuery =
-            query.trim()
-                .lowercase()
+            query.trim().lowercase()
 
         if (cleanQuery.isBlank()) {
-            return recent(limit)
+            return recent(safeLimit)
         }
 
         val queryWords =
             tokenize(cleanQuery)
 
         if (queryWords.isEmpty()) {
-            return recent(limit)
+            return recent(safeLimit)
         }
 
         val ranked =
@@ -125,30 +157,36 @@ class MONUMemoryEngine(context: Context) {
                         }
 
                     val frequencyBonus =
-                        memory.accessCount.coerceAtMost(5)
+                        memory.accessCount
+                            .coerceAtMost(5)
 
                     val score =
                         matchedWords * 5 +
-                        exactBonus +
-                        frequencyBonus
+                            exactBonus +
+                            frequencyBonus
 
                     memory to score
                 }
-                .filter { it.second > 0 }
+                .filter {
+                    it.second > 0
+                }
                 .sortedWith(
-                    compareByDescending<Pair<MONUMemory, Int>> {
+                    compareByDescending<
+                        Pair<MONUMemory, Int>
+                    > {
                         it.second
                     }.thenByDescending {
                         it.first.updatedAt
                     }
                 )
-                .take(limit)
-                .map { it.first }
+                .take(safeLimit)
+                .map {
+                    it.first
+                }
 
         if (ranked.isNotEmpty()) {
-
-            ranked.forEach { memory ->
-                touch(memory.id)
+            ranked.forEach {
+                touch(it.id)
             }
         }
 
@@ -156,12 +194,21 @@ class MONUMemoryEngine(context: Context) {
     }
 
     @Synchronized
-    fun recent(limit: Int = 20): List<MONUMemory> {
+    fun recent(
+        limit: Int = DEFAULT_RECENT_LIMIT
+    ): List<MONUMemory> {
+
+        val safeLimit =
+            limit.coerceIn(
+                1,
+                MAX_MEMORIES
+            )
+
         return loadAll()
             .sortedByDescending {
                 it.updatedAt
             }
-            .take(limit)
+            .take(safeLimit)
     }
 
     @Synchronized
@@ -180,22 +227,39 @@ class MONUMemoryEngine(context: Context) {
     ): String {
 
         val relevant =
-            recall(query, limit)
+            recall(
+                query,
+                limit.coerceIn(
+                    1,
+                    DEFAULT_RECALL_LIMIT
+                )
+            )
 
         if (relevant.isEmpty()) {
             return ""
         }
 
-        val builder = StringBuilder()
+        val safeMax =
+            maxCharacters.coerceIn(
+                256,
+                16000
+            )
 
-        relevant.forEachIndexed { index, memory ->
+        val builder =
+            StringBuilder()
+
+        relevant.forEachIndexed {
+                index,
+                memory ->
 
             val line =
-                "${index + 1}. ${memory.content}\n"
+                "${index + 1}. " +
+                    "${memory.content}\n"
 
             if (
-                builder.length + line.length <=
-                maxCharacters
+                builder.length +
+                    line.length <=
+                    safeMax
             ) {
                 builder.append(line)
             }
@@ -228,8 +292,7 @@ class MONUMemoryEngine(context: Context) {
     fun forgetMatching(query: String): Int {
 
         val clean =
-            query.trim()
-                .lowercase()
+            query.trim().lowercase()
 
         if (clean.isBlank()) {
             return 0
@@ -259,9 +322,7 @@ class MONUMemoryEngine(context: Context) {
 
     @Synchronized
     fun clearAll() {
-        preferences.edit()
-            .remove(memoryKey)
-            .apply()
+        secureStore.clear()
     }
 
     fun memoryCount(): Int {
@@ -295,7 +356,9 @@ class MONUMemoryEngine(context: Context) {
         }
     }
 
-    private fun tokenize(text: String): Set<String> {
+    private fun tokenize(
+        text: String
+    ): Set<String> {
 
         return text
             .lowercase()
@@ -313,13 +376,12 @@ class MONUMemoryEngine(context: Context) {
             .toSet()
     }
 
-    private fun loadAll(): List<MONUMemory> {
+    private fun loadAll():
+        List<MONUMemory> {
 
         val raw =
-            preferences.getString(
-                memoryKey,
-                "[]"
-            ) ?: "[]"
+            secureStore.read()
+                ?: "[]"
 
         return try {
 
@@ -329,16 +391,25 @@ class MONUMemoryEngine(context: Context) {
             buildList {
 
                 for (
-                    index in 0 until array.length()
+                    index
+                    in 0 until array.length()
                 ) {
 
                     val json =
-                        array.optJSONObject(index)
-                            ?: continue
+                        array.optJSONObject(
+                            index
+                        ) ?: continue
 
                     val content =
-                        json.optString("content", "")
+                        json
+                            .optString(
+                                "content",
+                                ""
+                            )
                             .trim()
+                            .take(
+                                MAX_MEMORY_CHARS
+                            )
 
                     if (content.isBlank()) {
                         continue
@@ -352,21 +423,17 @@ class MONUMemoryEngine(context: Context) {
                                     UUID.randomUUID()
                                         .toString()
                                 ),
-
                             content = content,
-
                             createdAt =
                                 json.optLong(
                                     "createdAt",
                                     System.currentTimeMillis()
                                 ),
-
                             updatedAt =
                                 json.optLong(
                                     "updatedAt",
                                     System.currentTimeMillis()
                                 ),
-
                             accessCount =
                                 json.optInt(
                                     "accessCount",
@@ -376,6 +443,9 @@ class MONUMemoryEngine(context: Context) {
                     )
                 }
             }
+                .let {
+                    enforceLimits(it)
+                }
 
         } catch (_: Exception) {
             emptyList()
@@ -386,10 +456,13 @@ class MONUMemoryEngine(context: Context) {
         memories: List<MONUMemory>
     ) {
 
+        val bounded =
+            enforceLimits(memories)
+
         val array =
             JSONArray()
 
-        memories.forEach { memory ->
+        bounded.forEach { memory ->
 
             array.put(
                 JSONObject().apply {
@@ -402,6 +475,9 @@ class MONUMemoryEngine(context: Context) {
                     put(
                         "content",
                         memory.content
+                            .take(
+                                MAX_MEMORY_CHARS
+                            )
                     )
 
                     put(
@@ -422,11 +498,59 @@ class MONUMemoryEngine(context: Context) {
             )
         }
 
-        preferences.edit()
-            .putString(
-                memoryKey,
-                array.toString()
-            )
-            .apply()
+        secureStore.write(
+            array.toString()
+        )
+    }
+
+    private fun enforceLimits(
+        input: List<MONUMemory>
+    ): List<MONUMemory> {
+
+        val normalized =
+            input
+                .asSequence()
+                .filter {
+                    it.content.isNotBlank()
+                }
+                .map {
+                    it.copy(
+                        content =
+                            it.content
+                                .trim()
+                                .replace(
+                                    Regex("\\s+"),
+                                    " "
+                                )
+                                .take(
+                                    MAX_MEMORY_CHARS
+                                )
+                    )
+                }
+                .sortedByDescending {
+                    it.updatedAt
+                }
+                .take(MAX_MEMORIES)
+                .toList()
+
+        var totalChars = 0
+
+        return normalized
+            .filter { memory ->
+
+                val next =
+                    totalChars +
+                        memory.content.length
+
+                if (
+                    next <=
+                    MAX_TOTAL_CHARS
+                ) {
+                    totalChars = next
+                    true
+                } else {
+                    false
+                }
+            }
     }
 }
