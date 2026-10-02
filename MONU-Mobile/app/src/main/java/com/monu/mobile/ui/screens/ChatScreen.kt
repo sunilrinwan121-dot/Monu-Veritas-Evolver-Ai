@@ -95,6 +95,14 @@ var searching by remember {
     mutableStateOf(false)
 }
 
+var userFacingError by remember {
+    mutableStateOf<String?>(null)
+}
+
+var lastFailedCommand by remember {
+    mutableStateOf("")
+}
+
 var voiceListening by remember {
     mutableStateOf(false)
 }
@@ -123,9 +131,30 @@ fun submitToMasterBrain(
         searching = true
 
         try {
-            conversationIntegration.submit(cleanCommand)
+            val submission =
+                conversationIntegration.submit(cleanCommand)
+
+            val failed =
+                submission.result?.masterBrainResult?.success == false
+
+            if (failed) {
+                userFacingError =
+                    submission.state.errorMessage
+                        ?: submission.result?.masterBrainResult?.text
+                        ?: "MONU could not complete this request."
+
+                lastFailedCommand = cleanCommand
+            } else {
+                userFacingError = null
+                lastFailedCommand = ""
+            }
+
             refreshConversation()
-        } catch (_: Exception) {
+        } catch (error: Exception) {
+            userFacingError =
+                mapUserFacingError(error)
+
+            lastFailedCommand = cleanCommand
             refreshConversation()
         } finally {
             searching = false
@@ -222,6 +251,55 @@ Column(
             style =
                 MaterialTheme.typography.labelSmall
         )
+    }
+
+    userFacingError?.let { message ->
+        Card(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp)
+        ) {
+            Column(
+                modifier = Modifier.padding(14.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = "MONU could not complete the request",
+                    style = MaterialTheme.typography.titleMedium
+                )
+
+                Text(
+                    text = message,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    if (lastFailedCommand.isNotBlank()) {
+                        OutlinedButton(
+                            onClick = {
+                                val retryCommand = lastFailedCommand
+                                userFacingError = null
+                                submitToMasterBrain(retryCommand)
+                            }
+                        ) {
+                            Text("Retry")
+                        }
+                    }
+
+                    OutlinedButton(
+                        onClick = {
+                            userFacingError = null
+                            lastFailedCommand = ""
+                        }
+                    ) {
+                        Text("Dismiss")
+                    }
+                }
+            }
+        }
     }
 
     LazyColumn(
@@ -381,6 +459,28 @@ Column(
     }
 }
 
+}
+
+
+private fun mapUserFacingError(
+    error: Throwable
+): String {
+    return when (error) {
+        is java.net.UnknownHostException ->
+            "No internet connection or the requested service could not be reached."
+
+        is java.net.SocketTimeoutException ->
+            "The request took too long to complete. Please check your connection and try again."
+
+        is java.io.IOException ->
+            "A network error prevented MONU from completing the request."
+
+        is SecurityException ->
+            "MONU does not have permission required to complete this request."
+
+        else ->
+            "MONU could not complete the request. Please try again."
+    }
 }
 
 @Composable

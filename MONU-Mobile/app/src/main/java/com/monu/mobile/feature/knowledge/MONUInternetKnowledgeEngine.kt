@@ -118,7 +118,19 @@ class MONUInternetKnowledgeEngine {
                 source = "Internet",
                 state = InternetKnowledgeState.NETWORK_ERROR,
                 errorMessage =
-                    error.message ?: "Unknown network error"
+                    when (error) {
+                        is java.net.UnknownHostException ->
+                            "Internet connection is unavailable."
+
+                        is java.net.SocketTimeoutException ->
+                            "The internet request timed out."
+
+                        is java.io.IOException ->
+                            "The internet request failed."
+
+                        else ->
+                            "The internet knowledge service could not complete the request."
+                    }
             )
         }
     }

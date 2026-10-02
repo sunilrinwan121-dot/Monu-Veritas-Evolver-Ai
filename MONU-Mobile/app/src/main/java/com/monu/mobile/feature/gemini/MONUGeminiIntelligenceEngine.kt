@@ -327,8 +327,19 @@ class MONUGeminiIntelligenceEngine {
                 success = false,
                 model = model,
                 error =
-                    error.message
-                        ?: error.javaClass.simpleName
+                    when (error) {
+                        is java.net.UnknownHostException ->
+                            "Gemini service could not be reached."
+
+                        is java.net.SocketTimeoutException ->
+                            "Gemini request timed out."
+
+                        is java.io.IOException ->
+                            "Gemini network request failed."
+
+                        else ->
+                            "Gemini could not complete the request."
+                    }
             )
         } finally {
             connection?.disconnect()

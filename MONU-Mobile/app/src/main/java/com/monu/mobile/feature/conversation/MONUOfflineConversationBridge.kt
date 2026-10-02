@@ -42,7 +42,15 @@ class MONUOfflineConversationBridge(
                     content = brainResult.text
                 )
 
-            stateController.finishProcessing()
+            if (brainResult.success) {
+                stateController.finishProcessing()
+            } else {
+                stateController.setError(
+                    brainResult.text.ifBlank {
+                        "MONU could not complete this request."
+                    }
+                )
+            }
 
             MONUConversationExecutionResult(
                 userMessage = userMessage,
@@ -52,8 +60,7 @@ class MONUOfflineConversationBridge(
         } catch (error: Exception) {
 
             val safeMessage =
-                error.message
-                    ?: "MONU could not process this request."
+                MONUUserFacingErrorMapper.map(error)
 
             stateController.setError(safeMessage)
 

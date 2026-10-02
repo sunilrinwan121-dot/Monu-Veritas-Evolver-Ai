@@ -65,7 +65,17 @@ class MONUServerClient {
                 apkToServer = ConnectionState.DISCONNECTED,
                 serverToApk = ConnectionState.UNKNOWN,
                 lastCheckedAt = System.currentTimeMillis(),
-                message = error.message ?: "Network connection failed"
+                message =
+                            when (error) {
+                                is java.net.UnknownHostException ->
+                                    "Server host could not be reached."
+                                is java.net.SocketTimeoutException ->
+                                    "Server request timed out."
+                                is IOException ->
+                                    "Network connection failed."
+                                else ->
+                                    "Server connection failed."
+                            }
             )
 
         } catch (error: Exception) {
@@ -74,7 +84,7 @@ class MONUServerClient {
                 apkToServer = ConnectionState.DISCONNECTED,
                 serverToApk = ConnectionState.UNKNOWN,
                 lastCheckedAt = System.currentTimeMillis(),
-                message = error.message ?: "Unknown connection error"
+                message = "Server connection failed."
             )
         }
     }
@@ -117,8 +127,17 @@ class MONUServerClient {
             CapabilityStatus(
                 success = false,
                 rawResponse = "",
-                error = error.message
-                    ?: "Capability discovery failed"
+                error =
+                    when (error) {
+                        is java.net.UnknownHostException ->
+                            "Server host could not be reached."
+                        is java.net.SocketTimeoutException ->
+                            "Server capability request timed out."
+                        is IOException ->
+                            "Network connection failed."
+                        else ->
+                            "Capability discovery failed."
+                    }
             )
         }
     }
