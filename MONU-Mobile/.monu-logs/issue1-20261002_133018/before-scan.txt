@@ -1,0 +1,178 @@
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:46:                        serverToApk = ConnectionState.UNKNOWN,
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:54:                        serverToApk = ConnectionState.UNKNOWN,
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:66:                serverToApk = ConnectionState.UNKNOWN,
+app/src/main/java/com/monu/mobile/data/network/MONUServerClient.kt:75:                serverToApk = ConnectionState.UNKNOWN,
+app/src/main/java/com/monu/mobile/data/MONUPersistentChatRepository.kt:37:        if (!chatFile.exists()) return emptyList()
+app/src/main/java/com/monu/mobile/data/MONUPersistentChatRepository.kt:40:            if (content.isBlank()) return emptyList()
+app/src/main/java/com/monu/mobile/data/MONUPersistentChatRepository.kt:55:            emptyList()
+app/src/main/java/com/monu/mobile/domain/model/AttachmentModels.kt:8:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/AuditModels.kt:9:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/AuditModels.kt:26:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/AuditModels.kt:33:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/BackupModels.kt:9:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/ChatModels.kt:6:    val messages: List<ChatMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/CommandHistoryModels.kt:8:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/ConnectionModels.kt:8:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/ConnectionModels.kt:13:    val serverToApk: ConnectionState = ConnectionState.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:11:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:18:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:26:    val status: MONUContextStatus = MONUContextStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/ContextModels.kt:34:    val items: List<MONUContextItem> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:4:    UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:36:    val factors: List<MONUDecisionFactor> = emptyList()
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:43:    val status: MONUDecisionStatus = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:44:    val options: List<MONUDecisionOption> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/DecisionModels.kt:46:    val source: String = "UNKNOWN"
+app/src/main/java/com/monu/mobile/domain/model/DeviceCapabilityModels.kt:8:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/DiagnosticModels.kt:7:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/EmployeeModels.kt:13:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/EventModels.kt:12:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/EventModels.kt:21:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/ExecutionModels.kt:12:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/ExecutionModels.kt:46:    val steps: List<ExecutionStep> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/FileTransferModels.kt:19:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/IdentityModels.kt:7:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/IntegrationModels.kt:8:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/IntegrationModels.kt:12:    UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/IntegrationModels.kt:25:    val status: IntegrationStatus = IntegrationStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:9:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:17:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:26:    val confidence: IntelligenceConfidence = IntelligenceConfidence.UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/IntelligenceModels.kt:35:    val status: IntelligenceStatus = IntelligenceStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:10:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:17:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:25:    val status: MONUKnowledgeStatus = MONUKnowledgeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/KnowledgeModels.kt:26:    val tags: List<String> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/MediaModels.kt:52:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/MediaModels.kt:68:    val inputAssets: List<MONUMediaAsset> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/OptimizationModels.kt:10:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/OptimizationModels.kt:17:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/OptimizationModels.kt:25:    val status: OptimizationStatus = OptimizationStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/OptimizationModels.kt:26:    val confidence: OptimizationConfidence = OptimizationConfidence.UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/PermissionModels.kt:7:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:4:    UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:23:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:30:    val status: MONUPlanStepStatus = MONUPlanStepStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:31:    val dependencies: List<String> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:39:    val severity: String = "UNKNOWN"
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:45:    val status: MONUPlanStatus = MONUPlanStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:46:    val steps: List<MONUPlanStep> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:47:    val risks: List<MONUPlanRisk> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/PlanningModels.kt:48:    val source: String = "UNKNOWN"
+app/src/main/java/com/monu/mobile/domain/model/PlatformModels.kt:9:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/PlatformModels.kt:16:    val status: PlatformComponentStatus = PlatformComponentStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/RecoveryModels.kt:11:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/RecoveryModels.kt:25:    val status: RecoveryStatus = RecoveryStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/RuleModels.kt:9:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/RuleModels.kt:45:    val conditions: List<MONURuleCondition> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/RuleModels.kt:46:    val actions: List<MONURuleAction> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/SecurityModels.kt:8:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/ServiceCoordinationModels.kt:10:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/ServiceCoordinationModels.kt:14:    UNKNOWN,
+app/src/main/java/com/monu/mobile/domain/model/ServiceCoordinationModels.kt:26:    val status: ServiceStatus = ServiceStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:10:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:17:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:38:    val synchronizedKeys: List<String> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/StateSyncModels.kt:39:    val conflicts: List<String> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/SystemHealthModels.kt:7:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/VerificationModels.kt:10:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/VerificationModels.kt:44:    val evidence: List<VerificationEvidence> = emptyList(),
+app/src/main/java/com/monu/mobile/domain/model/WorkflowModels.kt:10:    UNKNOWN
+app/src/main/java/com/monu/mobile/domain/model/WorkflowModels.kt:36:    val steps: List<MONUWorkflowStep> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/capabilities/MONUDeviceCapabilityInspector.kt:68:                status = MONUCapabilityStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:32:            demoContext()
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:51:                prioritize(demoContext()).joinToString(
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:61:                    items = prioritize(demoContext())
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:68:                prioritize(demoContext()).joinToString(
+app/src/main/java/com/monu/mobile/feature/context/MONUContextIntelligence.kt:79:    fun demoContext(): List<MONUContextItem> = emptyList()
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationState.kt:4:    val messages: List<MONUConversationMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONUConversationUiAdapter.kt:6:    val messages: List<MONUConversationMessage> = emptyList(),
+app/src/main/java/com/monu/mobile/feature/conversation/MONULocalConversationSnapshotStore.kt:22:                ?: emptyList()
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:20:                MONUDecisionStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:25:            source = "LOCAL_ARCHITECTURE"
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:115:            status = MONUDiagnosticStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/diagnostics/MONUSelfDiagnostics.kt:127:            status = MONUDiagnosticStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:27:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:48:        } ?: return null
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:74:                it.status == MONUEventStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:41:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:99:                it.status == ExecutionStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:118:            status = ExecutionStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:61:            status = MONUHealthStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:70:            status = MONUHealthStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/health/MONUSystemHealthEngine.kt:88:                else -> MONUHealthStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:19:        if (commands.isEmpty()) return emptyList()
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt:14:            source = "LOCAL_ARCHITECTURE",
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt:22:            status = MONUSessionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/integration/MONUIntegrationHub.kt:9:        integrations: List<IntegrationEndpoint> = emptyList()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:79:                contextIntelligence.demoContext()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:88:                knowledgeCenter.demoKnowledge()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUIntelligenceHub.kt:106:                rulesEngine.demoRules()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:11:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:17:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:28:            status = IntelligenceStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/knowledge/MONUKnowledgeCenter.kt:9:    fun demoKnowledge(): List<MONUKnowledgeItem> = emptyList()
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:36:            return null
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:381:            emptyList()
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandCapabilityMatrix.kt:62:                intent = MONUOfflineCommandIntent.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:12:    UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandIntentParser.kt:50:                MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:24:        intentParser.parse(command) != MONUOfflineCommandIntent.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:45:            MONUOfflineCommandIntent.UNKNOWN ->
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:46:                "I received your command, but this offline capability is not available yet."
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:54:            handled = intent != MONUOfflineCommandIntent.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/optimization/MONUOptimizationEngine.kt:17:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:15:        risks: List<MONUPlanRisk> = emptyList()
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:21:                MONUPlanStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:27:            source = "LOCAL_ARCHITECTURE"
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:10:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:14:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:10:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:14:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:18:        return null
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:8:    fun demoRules(): List<MONURule> = emptyList()
+app/src/main/java/com/monu/mobile/feature/rules/MONURulesEngine.kt:11:        return MONURuleStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:29:            status = MONUSecurityStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:38:            status = MONUSecurityStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:56:            status = MONUSecurityStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/services/MONUServiceCoordinator.kt:9:        services: List<ServiceDescriptor> = emptyList()
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:52:                SyncStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:66:                SyncStatus.UNKNOWN ->
+app/src/main/java/com/monu/mobile/feature/sync/MONUStateSynchronizationEngine.kt:101:                it.status == SyncStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/transfer/MONUChunkPlanner.kt:15:            return emptyList()
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:43:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:81:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:121:                it.status == VerificationStatus.UNKNOWN
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:9:    fun demoWorkflows(): List<MONUWorkflow> = emptyList()
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:15:            status = MONUWorkflowStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:16:            message = "Real workflow execution requires a verified execution engine."
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:17:        mutableStateOf<List<MONUAttachment>>(emptyList())
+app/src/main/java/com/monu/mobile/ui/components/CommandInput.kt:62:                    attachments = emptyList()
+app/src/main/java/com/monu/mobile/ui/screens/AuditTrailScreen.kt:30:            result = MONUAuditResult.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/AuditTrailScreen.kt:38:            action = MONUAuditAction.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/AuditTrailScreen.kt:39:            result = MONUAuditResult.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/BackupRestoreScreen.kt:48:            "Real backup and restore transport is not configured yet."
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:368:                    "Attachments selected but attachment analysis is not available yet." +
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:27:            status = MONUCommandStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/CommandHistoryScreen.kt:35:            status = MONUCommandStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/ConnectionScreen.kt:138:            ConnectionState.UNKNOWN ->
+app/src/main/java/com/monu/mobile/ui/screens/ContextIntelligenceScreen.kt:22:    val context = engine.prioritize(engine.demoContext())
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:27:            status = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:28:            source = "LOCAL_ARCHITECTURE"
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:34:            status = MONUDecisionStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:35:            source = "LOCAL_ARCHITECTURE"
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:28:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:35:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:42:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:49:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:56:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/EmployeeDashboardScreen.kt:63:            status = MONUEmployeeStatus.UNKNOWN,
+app/src/main/java/com/monu/mobile/ui/screens/KnowledgeCenterScreen.kt:21:    val knowledge = MONUKnowledgeCenter().demoKnowledge()
+app/src/main/java/com/monu/mobile/ui/screens/MediaStudioScreen.kt:71:            Text("Status: ${MONUMediaJobStatus.UNKNOWN}")
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:23:    val demoNotifications = listOf(
+app/src/main/java/com/monu/mobile/ui/screens/NotificationCenterScreen.kt:66:            items(demoNotifications) { notification ->
+app/src/main/java/com/monu/mobile/ui/screens/PlanningIntelligenceScreen.kt:28:        source = "LOCAL_ARCHITECTURE",
+app/src/main/java/com/monu/mobile/ui/screens/RulesEngineScreen.kt:21:    val rules = MONURulesEngine().demoRules()
+app/src/main/java/com/monu/mobile/ui/screens/SecurityCenterScreen.kt:32:        mutableStateOf<List<MONUSecurityFinding>>(emptyList())
+app/src/main/java/com/monu/mobile/ui/screens/UnifiedIntelligenceScreen.kt:22:        Text("Missing intelligence remains UNKNOWN.")
+app/src/main/java/com/monu/mobile/ui/screens/WorkflowAutomationScreen.kt:21:    val workflows = MONUWorkflowCenter().demoWorkflows()

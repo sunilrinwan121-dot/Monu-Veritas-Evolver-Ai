@@ -1,0 +1,18 @@
+app/src/main/java/com/monu/mobile/data/MONUPersistentChatRepository.kt:37:        if (!chatFile.exists()) return emptyList()
+app/src/main/java/com/monu/mobile/data/MONUPersistentChatRepository.kt:40:            if (content.isBlank()) return emptyList()
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:27:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/events/MONUEventIntelligenceHub.kt:48:        } ?: return null
+app/src/main/java/com/monu/mobile/feature/execution/MONUExecutionOrchestrator.kt:41:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/history/MONUCommandHistory.kt:19:        if (commands.isEmpty()) return emptyList()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:11:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/intelligence/MONUUnifiedIntelligence.kt:17:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/memory/MONUMemoryEngine.kt:36:            return null
+app/src/main/java/com/monu/mobile/feature/optimization/MONUOptimizationEngine.kt:17:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:10:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/platform/MONUPlatformCoordinator.kt:14:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:10:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:14:        return emptyList()
+app/src/main/java/com/monu/mobile/feature/recovery/MONURecoveryEngine.kt:18:        return null
+app/src/main/java/com/monu/mobile/feature/transfer/MONUChunkPlanner.kt:15:            return emptyList()
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:43:        if (index == -1) return null
+app/src/main/java/com/monu/mobile/feature/verification/MONUVerificationEngine.kt:81:        if (index == -1) return null

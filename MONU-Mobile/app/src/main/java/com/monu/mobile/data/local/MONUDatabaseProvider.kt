@@ -1,3 +1,4 @@
+
 package com.monu.mobile.data.local
 
 import android.content.Context
@@ -6,15 +7,10 @@ import androidx.room.Room
 object MONUDatabaseProvider {
 
     @Volatile
-    private var instance:
-        MONULocalDatabase? = null
+    private var instance: MONULocalDatabase? = null
 
-    fun get(
-        context: Context
-    ): MONULocalDatabase {
-
+    fun get(context: Context): MONULocalDatabase {
         return instance ?: synchronized(this) {
-
             instance ?: Room.databaseBuilder(
                 context.applicationContext,
                 MONULocalDatabase::class.java,
@@ -22,6 +18,13 @@ object MONUDatabaseProvider {
             ).build().also {
                 instance = it
             }
+        }
+    }
+
+    fun close() {
+        synchronized(this) {
+            instance?.close()
+            instance = null
         }
     }
 }

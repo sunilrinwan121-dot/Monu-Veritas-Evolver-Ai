@@ -1,0 +1,11 @@
+app/src/main/java/com/monu/mobile/feature/decision/MONUDecisionCenter.kt:25:            source = "LOCAL_ARCHITECTURE"
+app/src/main/java/com/monu/mobile/feature/identity/MONUIdentityCenter.kt:14:            source = "LOCAL_ARCHITECTURE",
+app/src/main/java/com/monu/mobile/feature/offline/MONUOfflineCommandRouter.kt:46:                "I received your command, but this offline capability is not available yet."
+app/src/main/java/com/monu/mobile/feature/planning/MONUPlanningIntelligence.kt:27:            source = "LOCAL_ARCHITECTURE"
+app/src/main/java/com/monu/mobile/feature/security/MONUSecurityCenter.kt:58:            description = "Real TLS and server certificate verification requires live connection inspection.",
+app/src/main/java/com/monu/mobile/feature/workflows/MONUWorkflowCenter.kt:16:            message = "Real workflow execution requires a verified execution engine."
+app/src/main/java/com/monu/mobile/ui/screens/BackupRestoreScreen.kt:48:            "Real backup and restore transport is not configured yet."
+app/src/main/java/com/monu/mobile/ui/screens/ChatScreen.kt:368:                    "Attachments selected but attachment analysis is not available yet." +
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:28:            source = "LOCAL_ARCHITECTURE"
+app/src/main/java/com/monu/mobile/ui/screens/DecisionCenterScreen.kt:35:            source = "LOCAL_ARCHITECTURE"
+app/src/main/java/com/monu/mobile/ui/screens/PlanningIntelligenceScreen.kt:28:        source = "LOCAL_ARCHITECTURE",

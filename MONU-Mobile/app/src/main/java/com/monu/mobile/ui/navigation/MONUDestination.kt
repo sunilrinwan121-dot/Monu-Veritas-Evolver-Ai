@@ -1,3 +1,4 @@
+
 package com.monu.mobile.ui.navigation
 
 enum class MONUDestination(
@@ -16,5 +17,8 @@ enum class MONUDestination(
     SECURITY("Security", "◈"),
     DEVICE("Device", "▣"),
     ACTIVITY("Activity", "≡"),
+    WORKFLOWS("Workflow Automation", "↻"),
+    BACKUP("Backup & Restore", "⬆"),
+    RECOVERY("System Recovery", "⟳"),
     SETTINGS("Settings", "⚙")
 }

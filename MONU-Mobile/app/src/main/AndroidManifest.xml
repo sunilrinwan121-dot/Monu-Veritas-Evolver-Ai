@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:label="MONU"
         android:supportsRtl="true"
         android:theme="@style/Theme.MONU">

@@ -8,17 +8,21 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.monu.mobile.feature.workflows.MONUWorkflowCenter
 
 @Composable
 fun WorkflowAutomationScreen() {
-
-    val workflows = MONUWorkflowCenter().demoWorkflows()
+    val context = LocalContext.current
+    val center = remember(context) { MONUWorkflowCenter(context) }
+    val workflows = remember { center.workflows() }
+    var result by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -27,9 +31,9 @@ fun WorkflowAutomationScreen() {
     ) {
         Text("MONU Workflow Automation")
 
-        Text(
-            "Automation is designed around verified triggers and real execution results."
-        )
+        if (result.isNotBlank()) {
+            Text(result)
+        }
 
         LazyColumn(
             contentPadding = PaddingValues(top = 16.dp),
@@ -40,13 +44,23 @@ fun WorkflowAutomationScreen() {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(
-                        modifier = Modifier.padding(16.dp)
+                        modifier = Modifier.padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(workflow.name)
                         Text(workflow.description)
                         Text("Status: ${workflow.status}")
                         Text("Trigger: ${workflow.trigger}")
                         Text("Steps: ${workflow.steps.size}")
+
+                        Button(
+                            onClick = {
+                                val run = center.createRun(workflow)
+                                result = "${workflow.name}: ${run.status} - ${run.message.orEmpty()}"
+                            }
+                        ) {
+                            Text("Run Workflow")
+                        }
                     }
                 }
             }
