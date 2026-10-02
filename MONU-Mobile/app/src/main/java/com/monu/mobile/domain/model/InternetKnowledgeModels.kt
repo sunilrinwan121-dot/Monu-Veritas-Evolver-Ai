@@ -13,5 +13,6 @@ data class InternetKnowledgeResult(
     val summary: String,
     val source: String,
     val state: InternetKnowledgeState,
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
+    val sourceUrl: String = ""
 )
