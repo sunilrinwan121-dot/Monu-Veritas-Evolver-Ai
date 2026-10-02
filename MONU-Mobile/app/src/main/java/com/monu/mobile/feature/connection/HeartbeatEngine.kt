@@ -1,16 +1,21 @@
 package com.monu.mobile.feature.connection
 
+import android.content.Context
 import com.monu.mobile.domain.model.ConnectionStatus
 import com.monu.mobile.domain.repository.ConnectionRepository
 import kotlinx.coroutines.*
 
 class HeartbeatEngine(
-    private val repository: ConnectionRepository = ConnectionRepository()
+    context: Context
 ) {
-
     companion object {
         const val HEARTBEAT_INTERVAL_MS = 5 * 60 * 1000L
     }
+
+    private val repository =
+        ConnectionRepository(
+            context.applicationContext
+        )
 
     private var job: Job? = null
 
@@ -18,23 +23,21 @@ class HeartbeatEngine(
         scope: CoroutineScope,
         onStatus: (ConnectionStatus) -> Unit
     ) {
-
         stop()
 
-        job = scope.launch(Dispatchers.IO) {
+        job =
+            scope.launch(Dispatchers.IO) {
+                while (isActive) {
+                    val status =
+                        repository.checkConnection()
 
-            while (isActive) {
+                    withContext(Dispatchers.Main) {
+                        onStatus(status)
+                    }
 
-                val status =
-                    repository.checkConnection()
-
-                withContext(Dispatchers.Main) {
-                    onStatus(status)
+                    delay(HEARTBEAT_INTERVAL_MS)
                 }
-
-                delay(HEARTBEAT_INTERVAL_MS)
             }
-        }
     }
 
     fun stop() {

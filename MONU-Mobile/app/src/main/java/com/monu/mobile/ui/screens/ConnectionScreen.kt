@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.monu.mobile.domain.model.ConnectionState
@@ -18,6 +19,8 @@ import java.util.Locale
 
 @Composable
 fun ConnectionScreen() {
+
+    val context = LocalContext.current
 
     val scope = rememberCoroutineScope()
 
@@ -37,7 +40,7 @@ fun ConnectionScreen() {
             checking = true
 
             status = withContext(Dispatchers.IO) {
-                ConnectionRepository()
+                ConnectionRepository(context)
                     .checkConnection()
             }
 
